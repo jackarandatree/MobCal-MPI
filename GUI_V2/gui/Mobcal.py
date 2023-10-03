@@ -254,7 +254,7 @@ class Ui_Dialog(object):
         ## Tab 1
         self.t1le_1.setPlaceholderText(_translate("Dialog", "File path for folder containing .out/.log to be converted to .mfj"))
         self.t1le_2.setPlaceholderText(_translate("Dialog", "(Optional) .csv file within the Out/Log Directory that contains a list of .out/.log files for conversion to .mfj"))
-        self.t1le_3.setText(_translate("Dialog", "C:\\open3dtools\\bin\\sdf2tinkerxyz.exe "))
+        self.t1le_3.setText(_translate("Dialog", "C://open3dtools//bin//sdf2tinkerxyz.exe "))
         self.t1le_3.setPlaceholderText(_translate("Dialog", "Directory that sdf2xyz2sdf was installed in if different from default"))
         self.t1l1.setText(_translate("Dialog", "Out/Log Directory")) # changed from "Log Directory"
         self.t1l2.setText(_translate("Dialog", "Out/Log List (.csv)")) # changed from "Log List"
