@@ -67,17 +67,17 @@ def run(directory,csv,sdf2xyz2sdf_Directory,charge,parameters):
 	#	msg.exec_() #show messagebox
 	#	return
 	
-	if not os.path.isdir(os.getcwd()+'/mfj_creator//Python'):
-		msg = QMessageBox()
-		msg.setWindowTitle('Software Error')
-		msg.setText('The required python files are missing. Please redownload from the GitHub Repo and do not remove anything.')
-		msg.setIcon(QMessageBox.Critical)
-		msg.exec_() #show messagebox
-		return
+	#if not os.path.isdir(os.getcwd()+'/mfj_creator/Python'):
+	#	msg = QMessageBox()
+	#	msg.setWindowTitle('Software Error')
+	#	msg.setText('The required python files are missing. Please redownload from the GitHub Repo and do not remove anything.')
+	#	msg.setIcon(QMessageBox.Critical)
+	#	msg.exec_() #show messagebox
+	#	return
 	
-	directory = directory.replace('//','//') #Make sure it is in command prompt lingo
-	if directory[-1] != '//': #If the last character is not a / add a slash
-		directory = directory+'//'
+	directory = directory.replace('/','/') #Make sure it is in command prompt lingo
+	if directory[-1] != '/': #If the last character is not a / add a slash
+		directory = directory+'/'
 	
 	print('If any errors are encountered they will be written to: '+directory+'Errors.csv')
 	if os.path.isfile(directory+'/Errors.csv'): #Delete old error files before each run
