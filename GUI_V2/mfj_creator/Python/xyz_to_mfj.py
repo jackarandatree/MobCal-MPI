@@ -3,8 +3,8 @@ import random
 
 def xyz_to_mfj(directory,xyz,key,mfj,charge,parameters):
 	#Get the filename
-	filename = (mfj.split("."))[0].replace('/','\\')
-	filename = filename[filename.rfind('\\')+1:]
+	filename = (mfj.split("."))[0].replace('/','/')
+	filename = filename[filename.rfind('/')+1:]
 	
 	#open files and grab all data
 	opf = open(xyz,"r")
@@ -51,30 +51,30 @@ def xyz_to_mfj(directory,xyz,key,mfj,charge,parameters):
 	opf = open(mfj,"w")
 	seed = random.randint(1000000,1000000000)
 	seed = -(seed)
-	spacing = '%s\n%s\n%s\n%s\n%s\n%s\n%s %s %s %s %s %s\n' #regex for header
+	spacing = '%s/n%s/n%s/n%s/n%s/n%s/n%s %s %s %s %s %s/n' #regex for header
 	#We want to write the filename, 1, number of atoms, ang, calc, and 1 to the header
 	opf.write(spacing%(filename,'1',str(atom_num),'ang',charge,parameters[4],parameters[0],parameters[1],parameters[2],parameters[3],seed,parameters[5])) # changed in V2
 	for i in range(atom_num):
-		spacing = '%10s	   %10s	   %10s	   %7s	  %10s	  %5s	 %5s	%5s	   %5s\n' #regex for line
+		spacing = '%10s	   %10s	   %10s	   %7s	  %10s	  %5s	 %5s	%5s	   %5s/n' #regex for line
 		try: #Get the mass for the atom
 			atom_mass = str(mass_info[atom_info[xyz_data[i][5]]])
 		except (NameError,KeyError): #If the atom type cannot be determined in the mass file throw error
 			atom_mass = ''
-			if os.path.isfile(mfj[:mfj.rfind('\\')+1]+'\Errors.csv') == False:
-				error = open(mfj[:mfj.rfind('\\')+1]+'\Errors.csv','w')
-				error.write('Filename,Atom Label\n')
-				var = filename+','+str(i+1)+'\n'
+			if os.path.isfile(mfj[:mfj.rfind('/')+1]+'/Errors.csv') == False:
+				error = open(mfj[:mfj.rfind('/')+1]+'/Errors.csv','w')
+				error.write('Filename,Atom Label/n')
+				var = filename+','+str(i+1)+'/n'
 				error.write(var)
 				error.close()
 			else:
 				try:
-					error = open(mfj[:mfj.rfind('\\')+1]+'\Errors.csv','a')
-					var = filename+','+str(i+1)+'\n'
+					error = open(mfj[:mfj.rfind('/')+1]+'/Errors.csv','a')
+					var = filename+','+str(i+1)+'/n'
 					error.write(var)
 					error.close()
 				except PermissionError:
 					print('Cannot write to error file, please close it!')
-			print('No mass and vdw for atom label: '+str(i+1)+' in file: '+filename+'\n')
+			print('No mass and vdw for atom label: '+str(i+1)+' in file: '+filename+'/n')
 		try: #Get the van der Waals forces for the atom
 			vwd_w = [vdw_info[atom_info[xyz_data[i][5]]][0],vdw_info[atom_info[xyz_data[i][5]]][1],vdw_info[atom_info[xyz_data[i][5]]][2],vdw_info[atom_info[xyz_data[i][5]]][3]]
 		except (NameError,KeyError): #If the atom type cannot be determined in the vdw file throw error
